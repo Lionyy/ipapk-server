@@ -159,7 +159,7 @@ function main() {
       res.set('Content-Type', 'application/json');
       var page = parseInt(req.params.page ? req.params.page : 1);
       if (req.params.platform === 'android' || req.params.platform === 'ios') {
-        queryDB("select * from info where platform=? group by bundleID order by uploadTime desc limit ?,?", [req.params.platform, (page - 1) * pageCount, page * pageCount], function(error, result) {
+        queryDB("select * from info where info.uploadTime in (select max(i.uploadTime) from info i where i.platform=? group by i.bundleID) order by uploadTime desc limit ?,?", [req.params.platform, (page - 1) * pageCount, page * pageCount], function(error, result) {
           if (result) {
             res.send(mapIconAndUrl(result))
           } else {
