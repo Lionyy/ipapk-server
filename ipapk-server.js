@@ -42,7 +42,7 @@ program
     .option('-h, --host <host>', 'set host for server (defaults is your LAN ip)')
     .parse(process.argv);
 
-var port = program.port || 443;
+var port = program.port || 1234;
 
 var ipAddress = program.host || underscore
   .chain(require('os').networkInterfaces())
@@ -383,10 +383,13 @@ function parseIpa(filename) {
 
 function parseApk(filename) {
   return new Promise(function(resolve,reject){
+    console.log('file path -> ', filename)
     let apk = new nodeApk.Apk(filename)
     Promise.all([apk.getManifestInfo(), apk.getResources()]).then((values) => {
       manifest = values[0]
       resources = values[1]
+      console.log(JSON.stringify(manifest.raw, null, 4));
+      console.log("resources : ", resources)
       let label = manifest.applicationLabel;
       if (typeof label !== "string") {
         const all = resources.resolve(label);
@@ -420,16 +423,14 @@ function extractApkIcon(filename,guid) {
     Promise.all([apk.getManifestInfo(), apk.getResources()]).then((values) => {
       manifest = values[0]
       resources = values[1]
-      let label = manifest.applicationLabel;
-      if (typeof label !== "string") {
-        const all = resources.resolve(label);
-        label = (all.find((res) => (res.locale && res.locale.language === "fr")) || all[0]).value;
+      let applicationIcon = manifest.applicationIcon;
+      if (typeof applicationIcon !== "string") {
+        const all = resources.resolve(applicationIcon);
+        applicationIcon = (all.find((res) => (res.locale && res.locale.language === "fr")) || all[0]).value;
+        console.log('resources applicationIcon = ' + applicationIcon)
       }
       // resolve and extract the first application icon found
-      console.log('label = ' + label)
-      console.log('manifest.applicationIcon = ' + manifest.applicationIcon)
-
-      return apk.extract("res/mipmap-xxxhdpi-v4/ic_launcher.png");
+      return apk.extract(applicationIcon);
 
     }).then((buffer) => {
       if (buffer.length) {
