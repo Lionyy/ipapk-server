@@ -288,8 +288,8 @@ function mapIconAndUrl(result) {
 }
 
 function deleteInfo(info, res) {
-  console.log('info ' + info)
-  console.log('info.name ' + info.name)
+  // console.log('delete info ' + info)
+  // console.log('info.name ' + info.name)
   if (!info) {
       console.log('DB 查询 info 为空')
       return
@@ -388,8 +388,8 @@ function parseApk(filename) {
     Promise.all([apk.getManifestInfo(), apk.getResources()]).then((values) => {
       manifest = values[0]
       resources = values[1]
-      console.log(JSON.stringify(manifest.raw, null, 4));
-      console.log("resources : ", resources)
+      // console.log(JSON.stringify(manifest.raw, null, 4));
+      // console.log("resources : ", resources)
       let label = manifest.applicationLabel;
       if (typeof label !== "string") {
         const all = resources.resolve(label);
@@ -427,7 +427,7 @@ function extractApkIcon(filename,guid) {
       if (typeof applicationIcon !== "string") {
         const all = resources.resolve(applicationIcon);
         applicationIcon = (all.find((res) => (res.locale && res.locale.language === "fr")) || all[0]).value;
-        console.log('resources applicationIcon = ' + applicationIcon)
+        // console.log('resources applicationIcon = ' + applicationIcon)
       }
       // resolve and extract the first application icon found
       return apk.extract(applicationIcon);
