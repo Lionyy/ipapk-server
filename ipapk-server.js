@@ -239,10 +239,9 @@ function main() {
         errorHandler(err, res);
         return;
       }
-      var changelog;
-      if (fields.changelog) {
-        changelog = fields.changelog[0];
-      }
+      var changelog = fields.changelog
+      console.log('changelog: ' + changelog)
+
       if (!files.package) {
         errorHandler("params error",res)
         return
@@ -376,7 +375,7 @@ function parseIpa(filename) {
       info["build"] = data.CFBundleVersion,
       info["bundleID"] = data.CFBundleIdentifier,
       info["version"] = data.CFBundleShortVersionString,
-      info["name"] = data.CFBundleName
+      info["name"] = data.CFBundleDisplayName
       resolve(info)
     });
   });
