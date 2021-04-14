@@ -39,9 +39,17 @@
                         <div class="info_box">
                             <span class="app_name">{{app.name}}</span>
                             <span class="version_number">{{app.version}}({{app.build}})</span><br>
-                            <span>更新:</span>
+                            <span>更新日期:</span>
                             <span class="update_time">{{app.uploadTime}}</span>
-                            <br><span class="changelog">{{app.changelog ? app.changelog : ""}}</span>
+                            <br>
+                            <span>更新日志:</span>
+                            <br>
+                            <span :class="['changelog', app.isExpand ? 'expand' : 'close']" ref="changelog">{{app.changelog ? app.changelog : ""}} 
+                            </span> 
+                            <div class="changelog" v-if="app.needShowExpand">
+                                <div class="expand-button" v-on:click="expandClick(app)" v-if="app.isExpand" > 收起 </div>
+                                <div class="expand-button" v-on:click="expandClick(app)" v-else > 显示更多 </div> 
+                            </div>
                         </div>
                         <a class="down_btn" :href="app.url">下载</a>
                     </div>
