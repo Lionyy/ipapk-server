@@ -29,15 +29,14 @@ var main = new Vue({
 	            this.apps.forEach((item, index) => {
 	            	item.isExpand = false
 	            	item.needShowExpand = false
+	            	item.changelog = item.changelog.replace(/\n/g, '<br>')
 	            })
-
-				console.log('apps = ' + this.apps)
 
 	            // 展开收起
 				this.$nextTick(() => {
 					/* 获取文本所在的div */
 					let changelogDoms = this.$refs.changelog
-					console.log('changelogDoms = ' + changelogDoms)
+					// console.log('changelogDoms = ' + changelogDoms)
 
 					changelogDoms.forEach((item, index) => {
 	            		let app = this.apps[index]
@@ -53,7 +52,7 @@ var main = new Vue({
 						}
 						let indexOfApp = this.apps.indexOf(app)
 						Vue.set(this.apps, indexOfApp, app)
-						console.log('app.needShowExpand = ' + app.needShowExpand)
+						// console.log('app.needShowExpand = ' + app.needShowExpand)
 	            	})
 				})
 	        });
@@ -69,12 +68,6 @@ var main = new Vue({
 		has_data: function () {
 			return this.apps.length > 0
 		},
-		// isExpand: function (app) {
-		// 	return app.isExpand
-		// },
-		// needShowExpand: function (app) {
-		// 	return app.needShowExpand
-		// },
 	},
 });
 

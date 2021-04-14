@@ -26,6 +26,7 @@ var main = new Vue({
 	            this.apps.forEach((item, index) => {
 	            	item.isExpand = false
 	            	item.needShowExpand = false
+	            	item.changelog = item.changelog.replace(/\n/g, '<br>')
 	            })
 
 	            // 展开收起
@@ -36,7 +37,7 @@ var main = new Vue({
 					}
 
 					let changelogDoms = this.$refs.changelog
-					console.log('changelogDoms = ' + changelogDoms)
+					// console.log('changelogDoms = ' + changelogDoms)
 
 					changelogDoms.forEach((item, index) => {
 	            		let app = this.apps[index]
@@ -52,7 +53,7 @@ var main = new Vue({
 						}
 						let indexOfApp = this.apps.indexOf(app)
 						Vue.set(this.apps, indexOfApp, app)
-						console.log('app.needShowExpand = ' + app.needShowExpand)
+						// console.log('app.needShowExpand = ' + app.needShowExpand)
 	            	})
 				})
 	        });
