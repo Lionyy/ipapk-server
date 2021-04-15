@@ -8,17 +8,17 @@ if (arr_url && arr_url[1]) {
 		query[result[1]] = result[2];
 	}
 }
-query_paltform = 'ios'
+query_platform = 'ios'
 
-if (query.paltform) {
-   	query_paltform = query.paltform
-   	console.log('query.paltform = ' + query_paltform)
+if (query.platform) {
+   	query_platform = query.platform
+   	console.log('query.platform = ' + query_platform)
 }
 
 var main = new Vue({
 	el: '.platform_wrapper',
 	data: {
-		selected_paltform: query_paltform,
+		selected_paltform: query_platform,
 		apps_page: 1,
 		apps: [],
 		show_load_more_apps_button: true,
