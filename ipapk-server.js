@@ -151,6 +151,8 @@ function main() {
   var app = express();
   app.use('/cer', express.static(globalCerFolder));
   app.use('/', express.static(path.join(__dirname,'web')));
+  app.use('/ios', express.static(path.join(__dirname,'web')));
+  app.use('/andorid', express.static(path.join(__dirname,'web')));
   app.use('/ipa', express.static(ipasDir));
   app.use('/apk', express.static(apksDir));
   app.use('/icon', express.static(iconsDir));
@@ -402,6 +404,8 @@ function parseApk(filename) {
         "version":manifest.versionName,
         "platform":"android"
       }
+      // console.log("manifest.versionName : ", manifest.versionName)
+      // console.log("manifest.versionCode : ", manifest.versionCode)
       resolve(info)
       apk.close();
     });

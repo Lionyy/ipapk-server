@@ -43,6 +43,12 @@ ul li {
   overflow: :auto;
 }
 
+@media (min-width: 320px) {
+  html {
+    font-size: 11px;
+  }
+}
+
 @media (min-width: 375px) {
   html {
     font-size: 12px;
@@ -76,17 +82,17 @@ ul li {
 
 /*app列表框*/
 .app_wrapper{ width:100%; position:relative; overflow-x:hidden; }
-.platform_wrapper{ width:100%; height:100%;  box-sizing:border-box; padding:0 1.4rem; border-top:1px solid #ccc; margin-top:1rem; background:#fff; }
+.platform_wrapper{ width:100%; height:100%;  box-sizing:border-box; padding:0 1rem; border-top:1px solid #ccc; margin-top:1rem; background:#fff; }
 .platform_title {color: darkgray;}
 .selected_title {color: #0076cc;}
-.platform_wrapper>span{ padding:0.6rem 0.6rem;display: flex; display: -webkit-flex; justify-content: space-around; padding-bottom:0; font-size:2rem; position:relative;}
+.platform_wrapper>span{ padding:0.4rem 0.4rem;display: flex; display: -webkit-flex; justify-content: space-around; padding-bottom:0; font-size:2rem; position:relative;}
 .platform_wrapper>li{ width:100%; padding-top:0.8rem; padding-bottom:0.8rem; border-bottom:1px solid #ccc;}
-.platform_wrapper .app_info{ padding: 0.5rem 0rem; overflow:hidden;clear:both;}
-.platform_wrapper img{ float:left; width:5.4rem; height:5.4rem; margin-right:0.8rem; border:1px solid #ccc; border-radius:20%; box-sizing:border-box;}
+.platform_wrapper .app_info{ padding: 0.2rem 0rem; overflow:hidden;clear:both; }
+.platform_wrapper img{ float:left; width:4rem; height:4rem; margin-right:0.8rem; border:1px solid #ccc; border-radius:20%; box-sizing:border-box;}
 
-.info_box{max-width:60%; height: 100%; float:left; padding-top:0.2rem;}
+.info_box{max-width:56%; height: 100%; float:left; padding-top:0.2rem;}
 .info_box span{ color:#565656; padding-right:0.2rem; font-size:1rem;}
-
+.info_box p{ color:#565656; padding-right:0.2rem; font-size:1rem;}
 .info_box .app_name{ color:#2d2d2d; font-size:1.2rem;}
 .info_box .version_number{ color:#2d2d2d; font-size:1.2rem;}
 
@@ -94,12 +100,14 @@ ul li {
 
 .changelog {
     line-height: 22px;
-    padding-bottom: 5px;
 }
 
 .expand {
     overflow: auto;
     height: auto;
+    text-align: left;
+    /*text-align-last: justify; */
+    white-space: pre-line;
 }
 
 .close {
@@ -110,25 +118,11 @@ ul li {
     -webkit-box-orient: vertical; 
 }
 
-.expand-button-wrap {
-    position: absolute;
-    bottom: 20;
-    right: 0;
-    height: 22px;
-    width: auto;
-    background: white;
-}
-
-.expand-button {
-    text-align: center;
+.info_box .expand-button {
+    text-align: left;
     vertical-align: middle;
     color: #2276FF;
-    font-size: 14px;
     line-height: 22px;
-    /*width: 100px;*/
-    padding: 2px 5px;
-    background: #f0f0f0;
-    display: inline-block;
 }
 
 .moreAppButton {width:100%;padding: 0.3rem; margin-top: 10px; margin-bottom: 10px; text-align: center;font-size:1.2rem;background-color:lightgray; border-radius:0.4rem;color:#989898;width: 100%; height: 2rem;line-height: 2rem;}
