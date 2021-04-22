@@ -208,9 +208,9 @@ function main() {
     })
   });
 
-  app.get('/delete/:deadline', function(req, res) {
+  app.get('/delete/:deadline/:platform/:bundleID', function(req, res) {
     console.log('deadline = ' + req.params.deadline)
-    queryDB("select name,platform,guid,bundleID from info where uploadTime BETWEEN '1970-01-01 00:00::00' AND ?", [req.params.deadline], function(error, result) {
+    queryDB("select name,platform,guid,bundleID from info where platform=? and bundleID=? and uploadTime BETWEEN '1970-01-01 00:00::00' AND ?", [req.params.platform, req.params.bundleID, req.params.deadline], function(error, result) {
       if (result) {
         if (!isEmpty(result)) {
           console.log('result len ', result.length)
